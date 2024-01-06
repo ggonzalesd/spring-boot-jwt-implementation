@@ -7,15 +7,16 @@ import io.dev.authone.dto.TokenRes;
 import io.dev.authone.entities.UserEntity;
 
 @Component
-public class UserConverter extends GenericConverter<UserEntity, RegisterReq, TokenRes> {
+public class AuthConverter extends GenericConverter<UserEntity, RegisterReq, TokenRes> {
   @Override
   public UserEntity toEntity(RegisterReq request) {
-    return UserEntity.builder()
+    UserEntity userEntity = UserEntity.builder()
       .username(request.getUsername())
       .email(request.getEmail())
-      .display(request.getDisplay())
       .password(request.getPassword())
       .build();
+    userEntity.setDisplay(request.getDisplay());
+    return userEntity;
   }
 
   @Override

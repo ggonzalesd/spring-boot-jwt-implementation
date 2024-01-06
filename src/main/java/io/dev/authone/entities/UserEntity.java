@@ -1,25 +1,18 @@
 package io.dev.authone.entities;
 
-import java.util.Date;
-import java.util.UUID;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UuidGenerator;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -31,17 +24,11 @@ public class UserEntity extends FeedEntity {
   private String username;
   @Column(nullable = false, unique = true)
   private String email;
-  @Column(length = 64)
-  private String display;
   @Column(nullable = false)
   private String password;
 
   @Enumerated(EnumType.ORDINAL)
   @Column(nullable = false)
   private ERoles role;
-
-  @CreationTimestamp
-  @Column(name = "cake_day")
-  private Date cakeDay;
 
 }

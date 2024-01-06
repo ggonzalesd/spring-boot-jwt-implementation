@@ -9,11 +9,10 @@ import io.dev.authone.dto.LoginReq;
 import io.dev.authone.dto.RegisterReq;
 import io.dev.authone.dto.TokenRes;
 import io.dev.authone.entities.ERoles;
-import io.dev.authone.entities.FeedEntity;
 import io.dev.authone.entities.UserEntity;
 import io.dev.authone.jwt.JwtUtils;
 import io.dev.authone.repository.UserRepository;
-import io.dev.authone.utils.UserConverter;
+import io.dev.authone.utils.AuthConverter;
 
 @Service
 public class AuthService {
@@ -25,7 +24,7 @@ public class AuthService {
   private PasswordEncoder passwordEncoder;
 
   @Autowired
-  private UserConverter userConverter;
+  private AuthConverter userConverter;
 
   @Autowired
   private JwtUtils jwtUtils;
