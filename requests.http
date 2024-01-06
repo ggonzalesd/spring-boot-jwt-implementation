@@ -1,0 +1,27 @@
+
+@url = http://localhost:8080/api/v1
+
+### Login 
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "archiso",
+  "password": "1234"
+}
+
+### register
+POST {{url}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "archiso",
+  "email": "archiso@gmail.com",
+  "password": "1234",
+  "display": "ArchISO"
+}
+
+
+### Verify
+GET {{url}}/auth/verify
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcmNoaXNvIiwiaWF0IjoxNzA0NTEyODIzLCJleHAiOjE3MDQ1OTkyMjN9.rDYcU6gqYvhxuX2N_pR-c2INWzfrqkyxfkapCv_BeFM
