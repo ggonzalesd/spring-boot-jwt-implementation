@@ -1,8 +1,65 @@
 package io.dev.authone.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import io.dev.authone.dto.LoginReq;
+import io.dev.authone.dto.RegisterReq;
+import io.dev.authone.dto.TokenRes;
+import io.dev.authone.entities.ERoles;
+import io.dev.authone.entities.FeedEntity;
+import io.dev.authone.entities.UserEntity;
+import io.dev.authone.jwt.JwtUtils;
+import io.dev.authone.repository.UserRepository;
+import io.dev.authone.utils.UserConverter;
 
 @Service
 public class AuthService {
-  
+
+  @Autowired
+  private UserRepository userRepository;
+
+  @Autowired
+  private PasswordEncoder passwordEncoder;
+
+  @Autowired
+  private UserConverter userConverter;
+
+  @Autowired
+  private JwtUtils jwtUtils;
+
+  public TokenRes login(LoginReq body) {
+    UserEntity userEntity = userRepository.findByUsername(body.getUsername())
+      .orElseThrow(() -> new UsernameNotFoundException("Usuario '" + body.getUsername() + "' no existe!"));
+
+    if ( passwordEncoder.matches(body.getPassword(), userEntity.getPassword()) ) {
+      String token = jwtUtils.generateAccessToken(userEntity.getUsername());
+      
+      TokenRes response = userConverter.toResponse(userEntity);
+      response.setToken(token);
+
+      return response;
+    } else {
+      return null;
+    }
+  }
+
+  public TokenRes register(RegisterReq body) {
+    UserEntity user = userConverter.toEntity(body);
+
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
+    user.setRole(ERoles.USER);
+
+    userRepository.save(user);
+
+    String token = jwtUtils.generateAccessToken(user.getUsername());
+
+    TokenRes response = userConverter.toResponse(user);
+    response.setToken(token);
+
+    return response;
+  }
+
 }

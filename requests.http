@@ -24,4 +24,4 @@ Content-Type: application/json
 
 ### Verify
 GET {{url}}/auth/verify
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcmNoaXNvIiwiaWF0IjoxNzA0NTEyODIzLCJleHAiOjE3MDQ1OTkyMjN9.rDYcU6gqYvhxuX2N_pR-c2INWzfrqkyxfkapCv_BeFM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.2eyJzdWIiOiJhcmNoaXNvIiwiaWF0IjoxNzA0NTU5NTUyLCJleHAiOjE3MDQ2NDU5NTJ9.5TvM3kqpLXqTH-Y7pbVkGRNTZrcxYVTcOwJ7yL-02b4

@@ -15,19 +15,17 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "users")
-public class UserEntity {
-
-  @Id
-  @UuidGenerator(style = UuidGenerator.Style.RANDOM)
-  private UUID id;
+public class UserEntity extends FeedEntity {
 
   @Column(nullable = false, length = 64, unique = true)
   private String username;
