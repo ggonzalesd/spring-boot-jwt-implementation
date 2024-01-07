@@ -12,6 +12,7 @@ import io.dev.authone.entities.ERoles;
 import io.dev.authone.entities.UserEntity;
 import io.dev.authone.jwt.JwtUtils;
 import io.dev.authone.repository.UserRepository;
+import io.dev.authone.security.UserPrincipal;
 import io.dev.authone.utils.AuthConverter;
 
 @Service
@@ -28,6 +29,17 @@ public class AuthService {
 
   @Autowired
   private JwtUtils jwtUtils;
+
+  public TokenRes update() {
+    UserEntity userEntity = UserPrincipal.getCurrentUser();
+
+    String token = jwtUtils.generateAccessToken(userEntity.getUsername());
+
+    TokenRes response = userConverter.toResponse(userEntity);
+    response.setToken(token);
+
+    return response;
+  }
 
   public TokenRes login(LoginReq body) {
     UserEntity userEntity = userRepository.findByUsername(body.getUsername())

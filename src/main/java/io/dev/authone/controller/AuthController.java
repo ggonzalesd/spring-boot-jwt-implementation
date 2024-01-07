@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.dev.authone.dto.LoginReq;
 import io.dev.authone.dto.RegisterReq;
 import io.dev.authone.dto.TokenRes;
-import io.dev.authone.entities.UserEntity;
-import io.dev.authone.security.UserPrincipal;
 import io.dev.authone.service.AuthService;
-import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/auth")
@@ -42,10 +39,11 @@ public class AuthController {
     return ResponseEntity.ok(response);
   }
 
-  @GetMapping("/verify")
-  public ResponseEntity<String> verify(HttpServletRequest request) {
-    UserEntity userEntity = UserPrincipal.getCurrentUser();
-    return ResponseEntity.ok("Verify is OK! (" + userEntity.getUsername() + ")");
+  @GetMapping("/udpate")
+  public ResponseEntity<TokenRes> update() {
+    TokenRes response = authService.update();
+
+    return ResponseEntity.ok(response);
   }
 
 }

@@ -24,15 +24,19 @@ Content-Type: application/json
 
 ### Verify
 GET {{url}}/auth/verify
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcmNoaXNvIiwiaWF0IjoxNzA0NTcyODU3LCJleHAiOjE3MDQ2NTkyNTd9.OSs9MFnqUPBYT7WFVpEvsYql5fB5TSdCcy50HzpSpcw
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcmNoaXNvMiIsImlhdCI6MTcwNDU4MDU2MiwiZXhwIjoxNzA0NjY2OTYyfQ.QiQIoIm9dp-HJJzuGFbPox4TI9SR3G-SitdAS4OBTk0
 
 
 ### Create Fortress
 POST {{url}}/fortress
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcmNoaXNvIiwiaWF0IjoxNzA0NTcyODU3LCJleHAiOjE3MDQ2NTkyNTd9.OSs9MFnqUPBYT7WFVpEvsYql5fB5TSdCcy50HzpSpcw
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcmNoaXNvIiwiaWF0IjoxNzA0NTkyMzMxLCJleHAiOjE3MDQ2Nzg3MzF9.D86B0j7QWrpju_GN8FzBfUul4KX9PReDCccZvuP9fQc
 Content-Type: application/json
 
 {
-  "fortname": "fortress-id",
-  "display": "New Fortress"
+  "fortname": "fortress-linux",
+  "display": "Linux OS | I want this!"
 }
+
+### GET FORTRESSES
+GET {{url}}/fortress
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcmNoaXNvIiwiaWF0IjoxNzA0NTgwNjYzLCJleHAiOjE3MDQ2NjcwNjN9.c2DZIFvgJhFTRsjKCJ7VXuCC71BpX5UV9dnjCbq51eA
