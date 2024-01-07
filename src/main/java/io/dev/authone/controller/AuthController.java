@@ -1,7 +1,6 @@
 package io.dev.authone.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +12,8 @@ import io.dev.authone.dto.LoginReq;
 import io.dev.authone.dto.RegisterReq;
 import io.dev.authone.dto.TokenRes;
 import io.dev.authone.service.AuthService;
+import io.dev.authone.utils.ResPack;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
@@ -22,21 +23,17 @@ public class AuthController {
   private AuthService authService;
 
   @PostMapping("/login")
-  public ResponseEntity<TokenRes> login(@RequestBody LoginReq body) {
+  public ResponseEntity<ResPack<TokenRes>> login(@RequestBody @Valid LoginReq body) {
     TokenRes response = authService.login(body);
 
-    if ( response != null ) {
-      return ResponseEntity.ok(response);
-    } else {
-      return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
-    }
+    return ResPack.success(response);
   }
 
   @PostMapping("/register")
-  public ResponseEntity<TokenRes> register(@RequestBody RegisterReq body) {
+  public ResponseEntity<ResPack<TokenRes>> register(@RequestBody @Valid RegisterReq body) {
     TokenRes response = authService.register(body);
 
-    return ResponseEntity.ok(response);
+    return ResPack.success(response);
   }
 
   @GetMapping("/udpate")

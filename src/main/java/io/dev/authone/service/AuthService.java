@@ -53,7 +53,7 @@ public class AuthService {
 
       return response;
     } else {
-      return null;
+      throw new UsernameNotFoundException("Usuario '" + body.getUsername() + "' no existe!");
     }
   }
 
