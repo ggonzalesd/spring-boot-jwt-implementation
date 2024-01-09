@@ -1,6 +1,7 @@
 package io.dev.authone.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -43,11 +44,11 @@ public class AuthService {
 
   public TokenRes login(LoginReq body) {
     UserEntity userEntity = userRepository.findByUsername(body.getUsername())
-      .orElseThrow(() -> new UsernameNotFoundException("Usuario '" + body.getUsername() + "' no existe!"));
+        .orElseThrow(() -> new UsernameNotFoundException("Usuario '" + body.getUsername() + "' no existe!"));
 
-    if ( passwordEncoder.matches(body.getPassword(), userEntity.getPassword()) ) {
+    if (passwordEncoder.matches(body.getPassword(), userEntity.getPassword())) {
       String token = jwtUtils.generateAccessToken(userEntity.getUsername());
-      
+
       TokenRes response = userConverter.toResponse(userEntity);
       response.setToken(token);
 
@@ -62,6 +63,10 @@ public class AuthService {
 
     user.setPassword(passwordEncoder.encode(user.getPassword()));
     user.setRole(ERoles.USER);
+
+    userRepository.findByUsername(body.getUsername()).ifPresent(u -> {
+      throw new DataIntegrityViolationException("Username '" + u.getUsername() + "' Already exists!");
+    });
 
     userRepository.save(user);
 

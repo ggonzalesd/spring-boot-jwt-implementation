@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/fortress")
-public class ForstressController {
+public class FortressController {
 
   @Autowired
   private FortressRepository fortressRepository;

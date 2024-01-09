@@ -27,14 +27,12 @@ public class ResPack<T> {
 
   public static <T> ResponseEntity<ResPack<T>> success(T body) {
     return ResponseEntity.ok(
-      new ResPack<T>(true, "success", body)
-    );
+        new ResPack<T>(true, "success", body));
   }
 
   public static <T> ResponseEntity<ResPack<T>> fail(HttpStatus status, String message) {
     return ResponseEntity.status(status).body(
-      new ResPack<T>(false, message, null)
-    );
+        new ResPack<T>(false, message, null));
   }
 
 }

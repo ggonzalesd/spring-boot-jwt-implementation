@@ -29,7 +29,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcmNoaXNvMiIsImlhdCI6MTcwN
 
 ### Create Fortress
 POST {{url}}/fortress
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcmNoaXNvIiwiaWF0IjoxNzA0NTkyMzMxLCJleHAiOjE3MDQ2Nzg3MzF9.D86B0j7QWrpju_GN8FzBfUul4KX9PReDCccZvuP9fQc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcmNoaXNvIiwiaWF0IjoxNzA0ODExMzI3LCJleHAiOjE3MDQ4OTc3Mjd9.xWXiTX_e1RbP4NqeGwnm4ZccUw3mpb1cx1LQSPyG2hU
 Content-Type: application/json
 
 {
